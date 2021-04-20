@@ -44,3 +44,27 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+
+# Ignore bundler config.
+/.bundle
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore uploaded files in development
+/storage/*
+!/storage/.keep
+
+.byebug_history
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+
+# Ignore application configuration
+/config/application.yml
