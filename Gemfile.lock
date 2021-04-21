@@ -197,6 +197,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
+  devise
   devise_token_auth
   foreman
   jbuilder (~> 2.7)
