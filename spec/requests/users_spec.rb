@@ -8,7 +8,7 @@ RSpec.describe "Users Authentication", type: :request do
   
   describe "POST /api/auth" do
     it "Userデータを正しく記入すれば正常にレスポンスが返ってくる" do
-      post  api_user_registration_path params: { name: 'test', email: "test@test.com", password: 'test123'}
+      post  api_user_registration_path params: { name: 'test', email: "test@test.com", password: 'test123', password_confirmation: 'test123'}
       expect(response).to have_http_status(200)
     end
   end
