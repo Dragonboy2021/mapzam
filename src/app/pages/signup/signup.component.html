@@ -1,40 +1,40 @@
-<div class="container">
-  <div class="page-position">
-    <div class="title-position">
-      <mat-icon aria-hidden="false">create</mat-icon>
-      <h2>Sign Up</h2>
-      <div class="title-line"></div>
-    </div>
-    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" novalidate>    
-      <div class="form-container">
-        <mat-form-field appearance="fill">
-          <mat-label>Name</mat-label>
-          <input formControlName="name" matInput>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Email</mat-label>
-          <input formControlName="email" matInput>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Password</mat-label>
-          <input formControlName="password" matInput>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Confirm Password</mat-label>
-          <input formControlName="password_confirmation" matInput>
-        </mat-form-field>
-        <div class="form-button">
-          <button mat-raised-button color="primary" type="submit">Enter</button>
-        </div>
-      </div>
-    </form>
+<div class="section">
+
+  <div class="section-title">
+    <mat-icon aria-hidden="false">create</mat-icon>
+    <h2>Sign Up</h2>
   </div>
+  <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" novalidate>    
+    <div class="form-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input formControlName="name" matInput>
+        <mat-error *ngIf="f.name.errors?.required">Require Name</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput>
+        <mat-error *ngIf="f.email.errors?.required">Require Email Address</mat-error>
+        <mat-error *ngIf="f.email.errors?.email">Invalid Email Address</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input formControlName="password" matInput>
+        <mat-error *ngIf="f.password.errors?.required">Require Password</mat-error>
+        <mat-error *ngIf="f.password.errors?.minlength">Password must be minimum 6 characters</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Confirm Password</mat-label>
+        <input formControlName="password_confirmation" matInput>
+        <mat-error *ngIf="f.password_confirmation.errors?.required">Require Password</mat-error>
+        <mat-error *ngIf="f.password_confirmation.errors?.confirmedValidator">Password Must Match</mat-error>
+      </mat-form-field>
+      <div *ngIf="error">
+        <p class="error-message">Email is already exists.</p>
+      </div>
+      <div class="form-button">
+        <button mat-raised-button color="primary" type="submit">Enter</button>
+      </div>
+    </div>
+  </form>
 </div>
-
-
-  <!-- <form [formGroup]="signUpForm" (ngSumbit)="onSubmit()" novalidate>
-    <input placeholder="name" type="text" name="name" ngModel>
-    <input placeholder="email">
-    <input placeholder="password">
-    <input placeholder="confirm password">
-  </form> -->

@@ -1,20 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel'
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default'
+
 html, body, app-root, router-outlet
     height: 100%
 
-.page-position
-    text-align: center
-    padding-top: 60px
-
-.title-position
-    padding-bottom: 40px
-    h2
-        margin-bottom: 5px
-
-.title-line
-    border-bottom: 2px blue solid
-    margin-right: 45%
-    margin-left: 45%
+.error-message
+    color: red
+    padding: 10px
 
 .form-container
     display: flex
@@ -23,5 +16,25 @@ html, body, app-root, router-outlet
     justify-content: center
     flex-direction: column
     mat-form-field
-        width: 40%
+        width: 90%
         padding-bottom: 30px
+
+.section
+    padding-top: 60px
+    text-align: center
+    margin: 10px
+
+.section-title
+    margin-bottom: 40px
+    h2
+        text-decoration-line: underline
+        text-decoration-style: solid
+        text-decoration-color: blue
+
+.return-button
+    padding-bottom: 30px
+
+@media screen and (min-width: 480px)
+    .form-container
+        mat-form-field
+            width: 40%

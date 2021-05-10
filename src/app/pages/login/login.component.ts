@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../auth.service';
@@ -8,8 +8,9 @@ import { AuthService } from '../../auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.sass']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   loginForm: FormGroup;
+  error: boolean = false;
 
   constructor(public fb: FormBuilder, private auth: AuthService,
     private router: Router) { 
@@ -19,12 +20,7 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
-  }
-
-  get f() {
-    return this.loginForm.controls;
-  }
+  get f() {return this.loginForm.controls;}
 
   onSubmit() {
     if (this.loginForm.valid) {
@@ -32,7 +28,11 @@ export class LoginComponent implements OnInit {
         this.auth.setToken(response.headers.get('access-token'));
         this.auth.setClient(response.headers.get('client'));
         this.auth.setUid(response.headers.get('uid'));
+        this.auth.userSignedIn$.next(true);
         this.router.navigateByUrl('');
+      },
+      (error:any) => {
+        this.error = true;
       });
     }
   }

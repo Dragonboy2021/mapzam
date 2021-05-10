@@ -1,25 +1,30 @@
-<div class="container">
-  <div class="page-position">
-    <div class="title-position">
-      <mat-icon aria-hidden="false">person</mat-icon>
-      <h2>Login</h2>
-      <div class="title-line"></div>
-    </div>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>    
-      <div class="form-container">
-        <mat-form-field appearance="fill">
-          <mat-label>Email</mat-label>
-          <input formControlName="email" matInput>
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Password</mat-label>
-          <input formControlName="password" matInput>
-          
-        </mat-form-field>
-        <div class="form-button">
-          <button mat-raised-button color="primary" type="submit">Enter</button>
-        </div>
-      </div>
-    </form>
+<div class="section">
+
+  <div class="section-title">
+    <mat-icon aria-hidden="false">person</mat-icon>
+    <h2>Login</h2>
   </div>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>    
+    <div class="form-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput>
+        <mat-error *ngIf="f.email.errors?.required">Require Email Address</mat-error>
+        <mat-error *ngIf="f.email.errors?.email">Invalid Email Address</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input formControlName="password" matInput>
+        <mat-error *ngIf="f.password.errors?.required">Require Password</mat-error>
+      </mat-form-field>
+      <div *ngIf="error">
+        <p class="error-message">Wrong Username or Password</p>
+      </div>
+      <div class="form-button">
+        <button mat-raised-button color="primary" type="submit">Enter
+        </button>
+      </div>
+    </div>
+  </form>
+
 </div>
