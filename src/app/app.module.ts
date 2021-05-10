@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,6 +14,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatIcon, MatIconModule} from '@angular/material/icon';
+import { SearchComponent } from './pages/search/search.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { HeaderComponent } from './header/header.component';
+import { ErrorService } from './error.service';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +29,9 @@ import {MatIcon, MatIconModule} from '@angular/material/icon';
     HomeComponent,
     LoginComponent,
     QuizComponent,
-    SignupComponent
+    SignupComponent,
+    SearchComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,9 +43,13 @@ import {MatIcon, MatIconModule} from '@angular/material/icon';
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    GoogleMapsModule,
+    CarouselModule,
+    FlexLayoutModule,
+    MatToolbarModule
   ],
-  providers: [],
+  providers: [ { provide: HTTP_INTERCEPTORS, useClass: ErrorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

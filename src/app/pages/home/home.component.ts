@@ -7,21 +7,18 @@ import { AuthService } from '../../auth.service';
   styleUrls: ['./home.component.sass']
 })
 export class HomeComponent implements OnInit {
-
-  constructor(private auth: AuthService) { 
-
+  // userSignedIn$ = this.auth.userSignedIn$;
+  constructor(public auth: AuthService) { 
   }
 
   ngOnInit(): void {
-    this.auth.authToken().subscribe((data:any) => {
-      console.log(data)
-    })
   }
 
   logOut() {
     this.auth.logOut().subscribe(data => {
       if (data.success) {
         localStorage.clear();
+        this.auth.userSignedIn$.next(false);
       }
     });
   }

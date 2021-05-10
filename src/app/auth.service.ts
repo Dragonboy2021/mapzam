@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject, throwError } from 'rxjs';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { Observable, Subject, ReplaySubject } from 'rxjs';
+import {HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private url = 'http://localhost:3000';
-
-  userSignedIn$:Subject<boolean> = new Subject();
+  private url = environment.apiBase;
+  userSignedIn$:Subject<boolean> = new ReplaySubject(1);
 
   private httpHeaders: HttpHeaders = new HttpHeaders({
     'Content-Type': 'application/json'
@@ -16,9 +17,9 @@ export class AuthService {
 
   authHeaders: HttpHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
-    'access-token': this.getToken() || '{}',
-    'client': this.getClient() || '{}',
-    'uid': this.getUid() || '{}',
+    'access-token': this.getToken()!,
+    'client': this.getClient()!,
+    'uid': this.getUid()!
   });
 
   constructor(private http: HttpClient) { }
@@ -35,22 +36,22 @@ export class AuthService {
     localStorage.setItem('client', client);
   }
 
-  getToken() {
+  private getToken() {
     return localStorage.getItem('access-token');
   }
 
-  getUid() {
+  private getUid() {
     return localStorage.getItem('uid');
   }
 
-  getClient() {
+  private getClient() {
     return localStorage.getItem('client');
   }
 
   login(data: LogIn): Observable<any> {
     return this.http.post(
       this.url + '/api/auth/sign_in',
-      data, { headers: this.httpHeaders, observe: 'response'});
+      data, { headers: this.httpHeaders, observe: 'response'})
   }
 
   signUp(data: SignUp): Observable<any>{
@@ -60,7 +61,13 @@ export class AuthService {
   }
 
   logOut(): Observable<any> {
-    return this.http.delete(this.url + '/api/auth/sign_out', {headers: this.authHeaders});
+    const header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'access-token': this.getToken()!,
+      'client': this.getClient()!,
+      'uid': this.getUid()!
+    });
+    return this.http.delete(this.url + '/api/auth/sign_out', {headers: header});
   }
 
   authToken(): Observable<any> {
