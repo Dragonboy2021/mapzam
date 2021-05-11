@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'search', component: SearchComponent },
-  //{ path: '', component: QuizComponent },
+  { path: 'quiz', component: QuizComponent },
   { path: '**', component: HomeComponent }
 ];
 
