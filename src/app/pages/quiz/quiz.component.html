@@ -1,46 +1,86 @@
-<div class="container">
-  <div class="page-position">
+<div class="section">
+
+  <div class="section-title">
     <mat-icon aria-hidden="false">help</mat-icon>
     <h2>Quiz</h2>
+  </div>
 
-    <div class="quiz-section">
-      <div class="row">
-        
-        <div class="question-number">
-          <button mat-mini-fab color="primary" 
-            aria-label="Example icon button with a plus one icon">
-            1
-          </button>
-        </div>
-
-        <div class="col-sm-12">
-          <img src="https://via.placeholder.com/300">
-        </div>
-        <div class="col-sm-12">
-          <mat-form-field class="answer">
-            <input matInput placeholder="Answer 1">
-          </mat-form-field>
-        </div>
+  <form [formGroup]="quizForm" (ngSubmit)="onSubmit()" novalidate> 
+  <div class="quiz-section">
+    <!--  Quiz 1 -->
+    <div class="quiz">
+      <div class="quiz-number">
+        <button mat-mini-fab color="primary">1</button>
       </div>
-      <div class="row">
-        <div class="question-number">
-          <button mat-mini-fab color="primary" 
-            aria-label="Example icon button with a plus one icon">
-            2
-          </button>
-        </div>
-
-        <div class="col-sm-12">
-          <img src="https://via.placeholder.com/300">
+      <div class="quiz-question">
+        <p>Which country's flag is this?</p>
       </div>
-
-      <div class="col-sm-12">
-        <mat-form-field class="answer">
-          <input matInput placeholder="Answer 2">
+      <div class="quiz-flag">
+        <img height="240" class="img-fluid" src='{{flag}}'>
+      </div>
+      <div class="quiz-answer">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter Country Name</mat-label>
+          <input formControlName="q_one" matInput> 
+        </mat-form-field>
+      </div>
+    </div> 
+    <!--  Quiz 2 -->
+    <div class="quiz">
+      <div class="quiz-number">
+        <button mat-mini-fab color="primary">2</button>
+      </div>
+      <div class="quiz-question">
+        <p>What country is {{ capital }} in?</p>
+      </div>
+      <div class="quiz-answer">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter Country Name</mat-label>
+          <input formControlName="q_two" matInput>
+       </mat-form-field>
+      </div>
+    </div>
+    <!--  Quiz 3 -->
+    <div class="quiz">
+      <div class="quiz-number">
+        <button mat-mini-fab color="primary">3</button>
+      </div>
+      <div class="quiz-question">
+        <p>Which country's flag is this?</p>
+      </div>
+      <div class="quiz-flag">
+        <img height="240" class="img-fluid" src='{{flag2}}'>
+      </div>
+      <div class="quiz-answer">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter Country Name</mat-label>
+          <input formControlName="q_three" matInput> 
+        </mat-form-field>
+      </div>
+    </div> 
+    <!--  Quiz 4 -->
+    <div class="quiz">
+      <div class="quiz-number">
+        <button mat-mini-fab color="primary">4</button>
+      </div>
+      <div class="quiz-question">
+        <p>What country is shown on the map?</p>
+      </div>
+      <google-map [center]="center" width="100%" height="400px" [zoom]="6" [options]="options">
+        <map-marker *ngFor="let markerPosition of markerPositions"
+          [position]="markerPosition"></map-marker>
+      </google-map>
+      <div class="quiz-answer">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter Country Name</mat-label>
+          <input formControlName="q_four" matInput>
+        <!-- <mat-error *ngIf="f.search.errors?.required">Require Password</mat-error> --> 
         </mat-form-field>
       </div>
     </div>
-
-
+    <div class="quiz-button">
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </div>
   </div>
+  </form>
 </div>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CountryService } from '../../country.service';
-
+const Countries = require('Countries-Api')
 
 @Component({
   selector: 'app-search',
@@ -34,7 +34,7 @@ export class SearchComponent {
         this.imagesUrl = []; // clear images
         this.markerPositions = []; // clear markers
         // Add flag
-        this.flag = "https://flagcdn.com/h240/" + this.country.cca2.toLowerCase() + '.png';
+        this.flag = this.countryService.flag(this.country);
         // Add Google Map
         const latLng = this.country.latlng;
         this.center = new google.maps.LatLng(latLng[0],latLng[1]);
