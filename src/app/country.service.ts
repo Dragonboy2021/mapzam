@@ -11,7 +11,7 @@ const max_num_quiz = 4; // number of quizzes //
 })
 export class CountryService {
   answered_status = false;
-  quiz_form: any;
+  user_answers: any;
   answers = {
     q_1: '',
     q_2: '',
@@ -46,7 +46,39 @@ export class CountryService {
     }
   }
 
-  // Flagpedia //
+  calc_answer(quiz_answers:any, user_answers:any) {
+    const result:any = [];
+    Object.entries(quiz_answers).map((answer, index) => {
+      const data: any  = {};
+      data.position = index + 1;
+      data.answer = answer[1];
+      Object.entries(user_answers).map(user_answer => {
+        if (user_answer[0] === answer[0]) {
+          data.user_answer = user_answer [1];
+          if (answer[1] === user_answer[1]) {
+            data.result = 'Correct';
+          } else {
+            data.result = 'Wrong';
+          }
+        }
+      })
+      result.push(data);
+    });
+    return result;
+  }
+
+  calc_score(result:any) {
+    const score = { points: 0, percentage: 0}
+    result.map((data:any) => {
+      if (data.result === 'Correct') {
+        score.points += 1
+      }
+    })
+    score.percentage = score.points / max_num_quiz;
+    return score;
+  }
+
+  // Return Flag image from Flagpedia //
   flag(country: any) {
     return "https://flagcdn.com/h240/" + country.cca2.toLowerCase() + '.png';
   }

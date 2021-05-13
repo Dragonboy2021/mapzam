@@ -14,6 +14,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatIcon, MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
 import { SearchComponent } from './pages/search/search.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { CarouselModule } from 'ngx-owl-carousel-o';
@@ -21,6 +22,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HeaderComponent } from './header/header.component';
 import { ErrorService } from './error.service';
+import { ResultComponent } from './pages/result/result.component';
 
 
 @NgModule({
@@ -32,6 +34,7 @@ import { ErrorService } from './error.service';
     SignupComponent,
     SearchComponent,
     HeaderComponent,
+    ResultComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,8 @@ import { ErrorService } from './error.service';
     GoogleMapsModule,
     CarouselModule,
     FlexLayoutModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTableModule
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: ErrorService, multi: true}],
   bootstrap: [AppComponent]
