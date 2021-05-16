@@ -9,7 +9,7 @@ import { AuthService } from '../../auth.service';
   styleUrls: ['./result.component.sass']
 })
 export class ResultComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['position', 'answer', 'user_answer', 'result'];
   dataSource: any;
   score = {
     points: 0,
