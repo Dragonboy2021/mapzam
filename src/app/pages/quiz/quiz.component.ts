@@ -3,7 +3,7 @@ import { CountryService } from '../../country.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-quiz',
@@ -33,12 +33,13 @@ export class QuizComponent implements OnInit {
   };
 
   constructor(public fb: FormBuilder, private countryService: CountryService,
-    private router: Router) { 
+    private router: Router, private http: HttpClient) { 
+    this.countryService.answered_status = false;
     this.quizForm = this.fb.group({
-      q_one: [''],
-      q_two: [''],
-      q_three: [''],
-      q_four: ['']
+      q_1: [''],
+      q_2: [''],
+      q_3: [''],
+      q_4: ['']
     })
   }
 
@@ -55,14 +56,15 @@ export class QuizComponent implements OnInit {
   }
 
   onSubmit() {
-    this.countryService.quiz_form = this.quizForm.value;
+    this.countryService.user_answers = this.quizForm.value;
     this.countryService.answered_status = true;
+    this.router.navigateByUrl('result')
   }
 
   private setAnswers(countries:any) {
     this.countryService.answers.q_1 = countries[0].name.common;
-    this.countryService.answers.q_1 = countries[1].name.common;
-    this.countryService.answers.q_1 = countries[2].name.common;
-    this.countryService.answers.q_1 = countries[3].name.common;
+    this.countryService.answers.q_2 = countries[1].name.common;
+    this.countryService.answers.q_3 = countries[2].name.common;
+    this.countryService.answers.q_4 = countries[3].name.common;
   }
 }

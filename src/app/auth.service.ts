@@ -70,6 +70,16 @@ export class AuthService {
     return this.http.delete(this.url + '/api/auth/sign_out', {headers: header});
   }
 
+  score(score:number) {
+    const header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'access-token': this.getToken()!,
+      'client': this.getClient()!,
+      'uid': this.getUid()!
+    });
+    return this.http.post(environment.apiBase + '/api/scores', {score: score}, {headers: header})
+  }
+
   authToken(): Observable<any> {
     return this.http.get(this.url + '/api/auth/validate_token', {headers: this.authHeaders});
   }

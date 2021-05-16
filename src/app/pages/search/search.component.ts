@@ -9,6 +9,8 @@ const Countries = require('Countries-Api')
   styleUrls: ['./search.component.sass']
 })
 export class SearchComponent {
+  // apiLoaded: Observable<boolean>;
+  apiLoaded: any;
   country: any;
   error: boolean = false;
   flag: any;

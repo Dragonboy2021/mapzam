@@ -44,8 +44,10 @@ export class AppComponent implements OnInit {
   // Add Google Map API // 
   private loadScript() {
     let node = document.createElement('script');
-    node.src = `https://maps.googleapis.com/maps/api/js?key=${environment.googleMapApi}&libraries=places`;
+    node.src = `https://maps.googleapis.com/maps/api/js?key=${environment.googleMapApi}`;
     node.type = 'text/javascript';
+    node.async = true;
+    node.defer = true;
     document.getElementsByTagName('head')[0].appendChild(node);
   }
 }
