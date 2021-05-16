@@ -66,10 +66,12 @@
       <div class="quiz-question">
         <p>What country is shown on the map?</p>
       </div>
+ 
       <google-map [center]="center" width="100%" height="400px" [zoom]="6" [options]="options">
         <map-marker *ngFor="let markerPosition of markerPositions"
           [position]="markerPosition"></map-marker>
       </google-map>
+
       <div class="quiz-answer">
         <mat-form-field appearance="fill">
           <mat-label>Enter Country Name</mat-label>

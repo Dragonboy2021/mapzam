@@ -10,9 +10,9 @@ import { ResultComponent } from './pages/result/result.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  // { path: 'login', component: LoginComponent },
-  // { path: 'signup', component: SignupComponent },
-  // { path: 'search', component: SearchComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'search', component: SearchComponent },
   { path: 'quiz', component: QuizComponent },
   { path: 'result', component: ResultComponent },
   { path: '**', component: HomeComponent }

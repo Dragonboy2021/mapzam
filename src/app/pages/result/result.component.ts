@@ -1,48 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { timeStamp } from 'node:console';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { CountryService } from '../../country.service';
-
-// export interface PeriodicElement {
-//   answer: string;
-//   position: number;
-//   user_answer: string;
-//   result: string;
-// }
-
-
-// const ELEMENT_DATA: PeriodicElement[] = [
-//   {position: 1, answer: 'France', user_answer: 'France', result: 'Correct'},
-//   {position: 2, answer: 'Germany', user_answer: '', result: 'Wrong'},
-//   {position: 3, answer: 'Japan', user_answer: 'Japan', result: 'Correct'},
-//   {position: 4, answer: 'Indonesia', user_answer: 'Thailand', result: 'Wrong'}
-// ];
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-result',
   templateUrl: './result.component.html',
   styleUrls: ['./result.component.sass']
 })
-export class ResultComponent implements OnInit {
+export class ResultComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource: any;
-  // answers = {
-  //   q_1: 'France',
-  //   q_2: 'Germany',
-  //   q_3: 'Japan',
-  //   q_4: 'Italy'
-  // }
-  // form_quiz = {
-  //   q_1: '',
-  //   q_2: 'Germany',
-  //   q_3: 'Japan',
-  //   q_4: 'Germany'
-  // }
   score = {
     points: 0,
     percentage: 0
   }
 
-  constructor(private countryService: CountryService) { }
+  constructor(private authService: AuthService, private countryService: CountryService, private router: Router) { 
+    if (!this.countryService.answered_status) { // If user hasn't taken the quiz, return to home //
+      this.router.navigateByUrl('');
+    }
+  }
 
   ngOnInit(): void {
     this.dataSource = this.countryService.calc_answer(this.countryService.answers, this.countryService.user_answers); // set table data //
@@ -51,4 +29,17 @@ export class ResultComponent implements OnInit {
     this.score.percentage = data.percentage;
   }
 
+  onClick() {
+    this.authService.score(this.score.points).subscribe((response:any) => {
+      this.router.navigateByUrl('')
+    },
+    (error => {
+      console.log(error)
+    }))
+  }
+
+  ngOnDestroy() {
+    this.countryService.user_answers = null;
+    this.countryService.answered_status = false;
+  }
 }

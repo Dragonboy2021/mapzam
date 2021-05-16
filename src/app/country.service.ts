@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
+import { Observable, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 const Countries = require('Countries-Api');
 const max_id_countries = 248; // max id number of Countries API //
 const max_num_quiz = 4; // number of quizzes //
@@ -33,6 +35,7 @@ export class CountryService {
     }
     return countries;
   }
+
 
   searchCountry(search: string) {
     if (search) {

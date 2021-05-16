@@ -3,7 +3,7 @@ import { CountryService } from '../../country.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-quiz',
@@ -33,7 +33,8 @@ export class QuizComponent implements OnInit {
   };
 
   constructor(public fb: FormBuilder, private countryService: CountryService,
-    private router: Router) { 
+    private router: Router, private http: HttpClient) { 
+    this.countryService.answered_status = false;
     this.quizForm = this.fb.group({
       q_1: [''],
       q_2: [''],
