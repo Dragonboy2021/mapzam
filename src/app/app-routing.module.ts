@@ -6,6 +6,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { QuizComponent } from './pages/quiz/quiz.component';
 import { SearchComponent } from './pages/search/search.component';
 import { ResultComponent } from './pages/result/result.component';
+import { ScoreComponent } from './pages/score/score.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'search', component: SearchComponent },
   { path: 'quiz', component: QuizComponent },
   { path: 'result', component: ResultComponent },
+  { path: 'scores', component: ScoreComponent },
   { path: '**', component: HomeComponent }
 ];
 

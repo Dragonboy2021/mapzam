@@ -23,6 +23,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { HeaderComponent } from './header/header.component';
 import { ErrorService } from './error.service';
 import { ResultComponent } from './pages/result/result.component';
+import { ScoreComponent } from './pages/score/score.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { ResultComponent } from './pages/result/result.component';
     SearchComponent,
     HeaderComponent,
     ResultComponent,
+    ScoreComponent,
   ],
   imports: [
     BrowserModule,

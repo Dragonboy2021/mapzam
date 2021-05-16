@@ -36,6 +36,9 @@ export class CountryService {
     return countries;
   }
 
+  quiz_scores(): Observable<any> {
+    return this.http.get(environment.apiBase + '/api/scores');
+  }
 
   searchCountry(search: string) {
     if (search) {
