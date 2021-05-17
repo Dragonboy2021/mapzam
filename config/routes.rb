@@ -5,6 +5,7 @@ Rails.application.routes.draw do
         registrations: 'api/auth/registrations'
     }
     resources :scores, only: [:index, :create, :show]
+    resources :users, only: [:show]
   end
 
   get '*other', to: 'static#index'
