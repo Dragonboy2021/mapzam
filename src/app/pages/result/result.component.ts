@@ -9,7 +9,7 @@ import { AuthService } from '../../auth.service';
   styleUrls: ['./result.component.sass']
 })
 export class ResultComponent implements OnInit, OnDestroy {
-  req: any;
+  // req: any;
   displayedColumns: string[] = ['position', 'answer', 'user_answer', 'result'];
   dataSource: any;
   score = {
@@ -31,8 +31,8 @@ export class ResultComponent implements OnInit, OnDestroy {
   }
 
   onClick() {
-    this.req = this.authService.score(this.score.points).subscribe((response:any) => {
-      this.router.navigateByUrl('/score');
+    this.authService.score(this.score.points).subscribe((response:any) => {
+      this.router.navigateByUrl('scores');
     },
     (error => {
       console.log(error)
@@ -42,6 +42,6 @@ export class ResultComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.countryService.user_answers = null;
     this.countryService.answered_status = false;
-    this.req.unsubscribe();
+    // this.req.unsubscribe();
   }
 }

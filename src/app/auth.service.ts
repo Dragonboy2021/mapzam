@@ -92,7 +92,13 @@ export class AuthService {
   }
 
   private profile(id:any): Observable<any> {
-    return this.http.get(this.url + '/api/users/' + id, {headers: this.authHeaders})
+    const header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'access-token': this.getToken()!,
+      'client': this.getClient()!,
+      'uid': this.getUid()!
+    });
+    return this.http.get(this.url + '/api/users/' + id, {headers: header})
   }
   
   getProfile(): Observable<any> {
