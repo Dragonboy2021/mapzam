@@ -20,12 +20,14 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
 import { HeaderComponent } from './header/header.component';
 import { ErrorService } from './error.service';
 import { ResultComponent } from './pages/result/result.component';
 import { ScoreComponent } from './pages/score/score.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-
+import { AuthGuard } from './auth.guard';
+import { RoleGuard } from './role.guard';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
     FormsModule, ReactiveFormsModule,
     MatButtonModule,
     MatFormFieldModule,
+    MatMenuModule,
     MatInputModule,
     MatCardModule,
     MatIconModule,
@@ -57,7 +60,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
     MatToolbarModule,
     MatTableModule
   ],
-  providers: [ { provide: HTTP_INTERCEPTORS, useClass: ErrorService, multi: true}],
+  providers: [ { provide: HTTP_INTERCEPTORS, useClass: ErrorService, multi: true}, AuthGuard, RoleGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

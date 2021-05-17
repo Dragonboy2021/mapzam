@@ -26,7 +26,7 @@ export class LoginComponent implements OnDestroy {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      this.req = this.auth.login(this.loginForm.value).subscribe((response:any) => {
+      this.auth.login(this.loginForm.value).subscribe((response:any) => {
         this.auth.setToken(response.headers.get('access-token'));
         this.auth.setClient(response.headers.get('client'));
         this.auth.setUid(response.headers.get('uid'));
@@ -39,6 +39,6 @@ export class LoginComponent implements OnDestroy {
     }
   }
   ngOnDestroy() {
-    this.req.unsubscribe();
+    // this.req.unsubscribe();
   }
 }
