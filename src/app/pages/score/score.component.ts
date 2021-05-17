@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CountryService } from '../../country.service';
 
 
@@ -7,15 +7,19 @@ import { CountryService } from '../../country.service';
   templateUrl: './score.component.html',
   styleUrls: ['./score.component.sass']
 })
-export class ScoreComponent implements OnInit {
+export class ScoreComponent implements OnInit, OnDestroy{
+  req: any;
   displayedColumns: string[] = ['position', 'score', 'user', 'date'];
-  dataSource: any;
+  dataSource = [];
   constructor(private countryService: CountryService) { }
 
   ngOnInit(): void {
-    this.countryService.quiz_scores().subscribe((data:any) => {
+    this.req = this.countryService.quiz_scores().subscribe((data:any) => {
       this.dataSource = data;
     })
   }
 
+  ngOnDestroy(): void {
+    this.req.unsubscribe();
+  }
 }
