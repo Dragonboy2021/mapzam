@@ -24,6 +24,7 @@ import { HeaderComponent } from './header/header.component';
 import { ErrorService } from './error.service';
 import { ResultComponent } from './pages/result/result.component';
 import { ScoreComponent } from './pages/score/score.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { ScoreComponent } from './pages/score/score.component';
     HeaderComponent,
     ResultComponent,
     ScoreComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

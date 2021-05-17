@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, ReplaySubject } from 'rxjs';
+import { map, switchMap, tap } from 'rxjs/operators';
 import {HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
 
@@ -81,9 +82,25 @@ export class AuthService {
   }
 
   authToken(): Observable<any> {
-    return this.http.get(this.url + '/api/auth/validate_token', {headers: this.authHeaders});
+    const header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'access-token': this.getToken()!,
+      'client': this.getClient()!,
+      'uid': this.getUid()!
+    });
+    return this.http.get(this.url + '/api/auth/validate_token', {headers: header});
   }
 
+  private profile(id:any): Observable<any> {
+    return this.http.get(this.url + '/api/users/' + id, {headers: this.authHeaders})
+  }
+  
+  getProfile(): Observable<any> {
+    return this.authToken().pipe(
+      map((resp:any) => {return resp.data.id}),
+      switchMap(id => this.profile(id))
+    )
+  }
 }
 export class LogIn {
   constructor(
