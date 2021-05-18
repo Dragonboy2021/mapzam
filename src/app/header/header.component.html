@@ -4,16 +4,16 @@
   </div>
   <div fxHide.gt-xs fxFlex fxLayout fxLayoutAlign="end">
     <button mat-button [matMenuTriggerFor]="menu">Menu</button>
-      <mat-menu #menu="matMenu">
+    <mat-menu #menu="matMenu">
       <button mat-menu-item routerLink="">Home</button>
       <button mat-menu-item routerLink="login" *ngIf="!(auth.userSignedIn$ | async)">Login</button>
       <button mat-menu-item routerLink="signup" *ngIf="!(auth.userSignedIn$ | async)">Sign Up</button>
-      <button mat-menu-item routerLink="logout" *ngIf="(auth.userSignedIn$ | async)">Logout</button>
+      <button mat-menu-item routerLink="logout" *ngIf="(auth.userSignedIn$ | async)" (click)="logout()">Logout</button>
       <button mat-menu-item routerLink="profile" *ngIf="(auth.userSignedIn$ | async)">Profile</button>
       <button mat-menu-item routerLink="quiz" *ngIf="(auth.userSignedIn$ | async)">Quiz</button>
       <button mat-menu-item routerLink="search">Search</button>
       <button mat-menu-item routerLink="scores">Scores</button>
-  </mat-menu>
+    </mat-menu>
   </div>
   <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
     <ul fxLayout fxLayoutGap="15px" class="navigation-items">

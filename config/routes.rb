@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :scores, only: [:index, :create, :show]
     resources :users, only: [:show]
   end
-
-  get '*other', to: 'static#index'
-
+  get '', to: 'static#index'
+  get '*page', to: redirect('/')
+  
 end
