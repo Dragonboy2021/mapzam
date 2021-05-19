@@ -9,18 +9,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { QuizComponent } from './pages/quiz/quiz.component';
 import { SignupComponent } from './pages/signup/signup.component';
-import {MatButtonModule} from '@angular/material/button';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatCardModule} from '@angular/material/card';
-import {MatIcon, MatIconModule} from '@angular/material/icon';
-import {MatTableModule} from '@angular/material/table';
 import { SearchComponent } from './pages/search/search.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatMenuModule } from '@angular/material/menu';
 import { HeaderComponent } from './header/header.component';
 import { ErrorService } from './error.service';
 import { ResultComponent } from './pages/result/result.component';
@@ -28,6 +19,7 @@ import { ScoreComponent } from './pages/score/score.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { AuthGuard } from './auth.guard';
 import { RoleGuard } from './role.guard';
+import { SharedModule } from './shared/shared.module'
 
 @NgModule({
   declarations: [
@@ -48,17 +40,9 @@ import { RoleGuard } from './role.guard';
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule, ReactiveFormsModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatMenuModule,
-    MatInputModule,
-    MatCardModule,
-    MatIconModule,
     GoogleMapsModule,
     CarouselModule,
-    FlexLayoutModule,
-    MatToolbarModule,
-    MatTableModule
+    SharedModule,
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: ErrorService, multi: true}, AuthGuard, RoleGuard],
   bootstrap: [AppComponent]
