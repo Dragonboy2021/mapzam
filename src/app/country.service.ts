@@ -4,9 +4,8 @@ import { environment } from '../environments/environment';
 import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 const Countries = require('Countries-Api');
-const max_id_countries = 248; // max id number of Countries API //
 const max_num_quiz = 4; // number of quizzes //
-
+import { Territories } from './territories';
 
 @Injectable({
   providedIn: 'root'
@@ -23,17 +22,25 @@ export class CountryService {
 
   constructor(private http: HttpClient) { }
 
-  private getRandomNumber() {
-    return Math.floor(Math.random() * max_id_countries) + 1;
+  // Remove territories from Countries //
+  private filterCountries() {
+    let countries= Countries.findAll().data;
+    countries = countries.filter((country:any) => !Territories.includes(country.name.common));
+    return countries;
+  }
+
+  private getRandomNumber(num_country:number) {
+    return Math.floor(Math.random() * num_country);
   }
 
   quiz() { 
-    const countries = [];
+    const quiz_countries: any = [];
+    const countries = this.filterCountries();
     for(let i=1; i<=max_num_quiz; i++) {
-      const country = Countries.findById(this.getRandomNumber());
-      countries.push(country.data[0]);
+      const country = countries[this.getRandomNumber(countries.length)];
+      quiz_countries.push(country);
     }
-    return countries;
+    return quiz_countries;
   }
 
   quiz_scores(): Observable<any> {
