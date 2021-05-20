@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { CountryService } from '../../country.service';
-const Countries = require('Countries-Api')
+import { CountryService } from '@core/services/country.service';
+
 
 @Component({
   selector: 'app-search',

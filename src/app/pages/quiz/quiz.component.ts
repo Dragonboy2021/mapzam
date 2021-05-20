@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CountryService } from '../../country.service';
+import { CountryService } from '@core/services/country.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { OwlOptions } from 'ngx-owl-carousel-o';

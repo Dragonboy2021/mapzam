@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { environment } from '../environments/environment';
-import { AuthService } from './auth.service';
+import { environment } from '@env/environment';
+import { AuthService } from '@core/services/auth.service';
 import { filter } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-root',

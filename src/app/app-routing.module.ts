@@ -8,8 +8,8 @@ import { SearchComponent } from './pages/search/search.component';
 import { ResultComponent } from './pages/result/result.component';
 import { ScoreComponent } from './pages/score/score.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { AuthGuard } from './auth.guard';
-import { RoleGuard } from './role.guard';
+import { AuthGuard } from '@core/guards/auth.guard';
+import { RoleGuard } from '@core/guards/role.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
