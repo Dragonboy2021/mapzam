@@ -38,7 +38,6 @@ RSpec.describe "Scores", type: :request do
   describe "GET /api/scores" do
     it 'Scoreデータが返信される' do
       get api_scores_path
-      binding.pry
       expect(response).to have_http_status(200)
     end
   end
