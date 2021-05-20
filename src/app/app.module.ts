@@ -19,7 +19,8 @@ import { ScoreComponent } from './pages/score/score.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { AuthGuard } from './auth.guard';
 import { RoleGuard } from './role.guard';
-import { SharedModule } from './shared/shared.module'
+import { SharedModule } from '@shared/shared.module'
+
 
 @NgModule({
   declarations: [

@@ -21,6 +21,7 @@
       "dom"
     ],
     "paths": {
+      "@shared/*": ["./src/app/shared/*"]
     }
   },
   "angularCompilerOptions": {
