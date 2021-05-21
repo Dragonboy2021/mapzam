@@ -15,6 +15,9 @@ RSpec.describe "Scores", type: :request do
           client: auth["client"],
           "access-token": auth["access-token"]
         })
+        score = JSON.parse response.body
+        expect(score['score']).to eq(1)
+        expect(score['user_id']).to eq(@user.id)
         expect(response).to have_http_status(201)
       end
     end
@@ -38,6 +41,10 @@ RSpec.describe "Scores", type: :request do
   describe "GET /api/scores" do
     it 'Scoreデータが返信される' do
       get api_scores_path
+      score = JSON.parse response.body
+      expect(score[0]['score']).to eq(@score.score)
+      expect(score[0]['user_id']).to eq(@score.user_id)
+      expect(score[0]['id']).to eq(@score.id)
       expect(response).to have_http_status(200)
     end
   end

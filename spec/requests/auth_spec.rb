@@ -15,6 +15,9 @@ RSpec.describe "Users Authentication", type: :request do
           password: 'test123', 
           password_confirmation: 'test123'
         }
+        user = JSON.parse response.body
+        expect(user['data']['name']).to eq('test')
+        expect(user['data']['email']).to eq('test@test.com')
         expect(response).to have_http_status(200)
       end
     end
@@ -35,6 +38,12 @@ RSpec.describe "Users Authentication", type: :request do
     context 'Userログインができるとき' do
       it '登録済みのUserデータを正しく記入すればログインでき正常にレスポンスが返ってくる' do
         sign_in(@user)
+        user = JSON.parse response.body
+        expect(user['data']['id']).to eq(@user.id)
+        expect(user['data']['uid']).to eq(@user.uid)
+        expect(user['data']['name']).to eq(@user.name)
+        expect(user['data']['email']).to eq(@user.email)
+        expect(user['data']['provider']).to eq(@user.provider)
         expect(response).to have_http_status(200)
       end
     end
@@ -56,6 +65,8 @@ RSpec.describe "Users Authentication", type: :request do
           client: auth["client"],
           "access-token": auth["access-token"]
         }})
+        resp = JSON.parse response.body
+        expect(resp['success']).to eq(true)
         expect(response).to have_http_status(200)
       end
     end
@@ -77,6 +88,11 @@ RSpec.describe "Users Authentication", type: :request do
           "access-token": auth["access-token"]
         }}
         user = JSON.parse response.body
+        expect(user['data']['id']).to eq(@user.id)
+        expect(user['data']['uid']).to eq(@user.uid)
+        expect(user['data']['name']).to eq(@user.name)
+        expect(user['data']['email']).to eq(@user.email)
+        expect(user['data']['provider']).to eq(@user.provider)
         expect(response).to have_http_status(200)
       end
     end

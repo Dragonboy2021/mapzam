@@ -21,6 +21,12 @@ RSpec.describe "Users Authentication", type: :request do
           client: auth["client"],
           "access-token": auth["access-token"]
         }}
+        user = JSON.parse response.body
+        expect(user['id']).to eq(@user.id)
+        expect(user['uid']).to eq(@user.uid)
+        expect(user['name']).to eq(@user.name)
+        expect(user['email']).to eq(@user.email)
+        expect(user['provider']).to eq(@user.provider)
         expect(response).to have_http_status(200)
       end
     end
