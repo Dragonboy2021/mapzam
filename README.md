@@ -34,8 +34,7 @@
 ## Quiz テーブル
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| score         | string     | null: false                    |
-| time          | string     | null: false                    |
+| score         | integer    | null: false                    |
 
 ### Associate
 - belongs_to :user
