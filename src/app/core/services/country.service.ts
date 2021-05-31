@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '@env/environment';
 import { Observable } from 'rxjs';
-const Countries = require('Countries-Api');
+const Countries = require('countries-api');
 const max_num_quiz = 4; // number of quizzes //
 import { Territories } from '@app/territories';
 
