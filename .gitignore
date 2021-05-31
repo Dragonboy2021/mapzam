@@ -73,3 +73,6 @@ Thumbs.db
 # Angular build files
 /public/*
 
+# Angular Env files
+/src/environments/environment.ts
+/src/environments/environment.prod.ts
