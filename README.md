@@ -70,7 +70,7 @@
 <br>
 
 # ⚙️ 工夫したポイント
-- Rails APIサーバーを設計し、Devise Token ライブラリーを投入してAngularで繋げること。
+- Rails APIサーバーを設計して、Devise Token ライブラリーを投入してAngularで繋げるようにしました。
 
 <br>
 
